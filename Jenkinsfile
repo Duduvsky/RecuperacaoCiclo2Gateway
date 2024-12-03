@@ -3,14 +3,14 @@ pipeline {
     stages {
         stage('Verificar Repositório') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], useRemoteConfigs:[[url: 'URL do seu repositório do GitHub - gateway']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], useRemoteConfigs:[[url: 'https://github.com/Duduvsky/RecuperacaoCiclo2Gateway']]])
             }
         }
         
         stage('Construir Imagem Docker') {
             steps {
                 script {
-                    def appName = 'coloque o nome que quiser aqui'
+                    def appName = 'rec-gateway-dudu'
                     def imageTag = "${appName}:${env.BUILD_ID}"
 
                     // Construir a imagem Docker
@@ -22,7 +22,7 @@ pipeline {
         stage('Fazer Deploy') {
             steps {
                 script {
-                    def appName = 'coloque o nome que quiser aqui'
+                    def appName = 'rec-gateway-dudu'
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     // Parar e remover o container existente, se houver
                     bat "docker stop ${appName}"
