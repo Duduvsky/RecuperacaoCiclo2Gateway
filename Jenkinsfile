@@ -25,8 +25,8 @@ pipeline {
                     def appName = 'rec-gateway-dudu'
                     def imageTag = "${appName}:${env.BUILD_ID}"
                     // Parar e remover o container existente, se houver
-                    bat "docker stop ${appName}"
-                    bat "docker rm ${appName}"
+                    // bat "docker stop ${appName}"
+                    // bat "docker rm ${appName}"
                     
                     // Executar o novo container
                     bat "docker run -d --name ${appName} -p 3000:3000 ${imageTag}"
